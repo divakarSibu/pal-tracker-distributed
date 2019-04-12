@@ -12,6 +12,8 @@ dependencies {
 
     compile "org.springframework.boot:spring-boot-starter-web"
 
+    compile "io.pivotal.spring.cloud:spring-cloud-services-starter-config-client"
+
     compile "com.zaxxer:HikariCP:$hikariVersion"
     compile "mysql:mysql-connector-java:$mysqlVersion"
     compile "ch.qos.logback:logback-classic:$logbackVersion"
@@ -28,6 +30,11 @@ dependencies {
 bootRun.environment([
         "APPLICATION_OAUTH_ENABLED": true,
         "SECURITY_OAUTH2_CLIENT_CLIENT_ID": "tracker-client",
-        "SECURITY_OAUTH2_CLIENT_CLIENT_SECRET": "supersecret"
+        "SECURITY_OAUTH2_CLIENT_CLIENT_SECRET": "supersecret",
+        "REGISTRATION_SERVER_ENDPOINT": "http://registration-server",
+])
+
+test.environment([
+        "REGISTRATION_SERVER_ENDPOINT": "http://registration-server",
 ])
 
